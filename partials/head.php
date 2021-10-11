@@ -4,6 +4,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="public/style.css">
-    <title>Document</title>
+    <title>Keskusteluforum</title>
 </head>
 <body>
+
+<a href='/'><h1>Keskustelu forum</h1></a>
+<a href='/register'>register</a><br>
+<a href='/login'>login</a>
+<hr/>
