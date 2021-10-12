@@ -9,6 +9,6 @@
 <body>
 
 <a href='/'><h1>Keskustelu forum</h1></a>
-<a href='/register'>register</a><br>
-<a href='/login'>login</a>
+<a href='/register'>rekisteröidy</a><br>
+<a href='/login'>kirjaudu sisään</a>
 <hr/>
