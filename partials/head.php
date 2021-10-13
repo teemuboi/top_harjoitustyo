@@ -7,8 +7,13 @@
     <title>Keskusteluforum</title>
 </head>
 <body>
-
 <a href='/'><h1>Keskustelu forum</h1></a>
-<a href='/register'>rekisteröidy</a><br>
-<a href='/login'>kirjaudu sisään</a>
+
+<?php if(isLoggedIn()){?>
+    <?= $_SESSION['username']?><br>
+    <a href='/logout'>Kirjaudu ulos</a><br>
+<?php }else{?>
+    <a href='/register'>rekisteröidy</a><br>
+    <a href='/login'>kirjaudu sisään</a>
+<?php }?>
 <hr/>

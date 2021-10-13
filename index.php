@@ -1,11 +1,20 @@
 <?php
+session_start();
+
 require_once "database/connection.php";
+require_once "controllers/frontpagecontroller.php";
 require_once "controllers/usercontroller.php";
+require_once "controllers/topiccontroller.php";
+require_once "controllers/messagecontroller.php";
 
 require_once "partials/head.php";
-switch(explode("?", $_SERVER["REQUEST_URI"])[0]) {
+
+// echo $_SESSION['userid'];
+switch(explode("?", $_SERVER["REQUEST_URI"])[0]){
     case "/":
-        require_once "views/main.view.php";
+        // topic_controller();
+        frontpage_controller();
+        // require_once "views/main.view.php";
     break;
 
     case "/register":
@@ -14,6 +23,19 @@ switch(explode("?", $_SERVER["REQUEST_URI"])[0]) {
 
     case "/login":
         login_controller();
+    break;
+
+    case "/logout":
+        logout_controller();
+    break;
+
+    case "/addtopic":
+        topic_controller();
+    break;
+
+    case "/topic":
+        messages_controller();
+        viewtopic_controller();
     break;
 
     case "/db":

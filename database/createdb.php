@@ -29,6 +29,7 @@ $table1 = "CREATE TABLE users (
 
 $table2 = "CREATE TABLE topics (
     topicid INT(11) AUTO_INCREMENT PRIMARY KEY,
+    userid INT(11) NOT NULL,
     title VARCHAR(30) NOT NULL,
     date DATE NOT NULL
 )";

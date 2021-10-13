@@ -20,12 +20,18 @@ function login($username, $password){
     $stm->execute([$username]);
     $user = $stm->fetch(PDO::FETCH_ASSOC);
     
-    var_dump($user);
-    
     if(isset($user["password"])){
         if($password == $user["password"]){
             return $user;
         }
+    }
+    return false;
+}
+
+function isLoggedIn(){
+    if(isset($_SESSION['username'], $_SESSION['userid']) 
+    && ($_SESSION['session_id'] == session_id())){
+        return true;
     }
     return false;
 }

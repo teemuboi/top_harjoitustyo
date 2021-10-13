@@ -27,11 +27,21 @@ function login_controller(){
 
         $result = login($username, $password);
         if($result){
-            // $_SESSION['username'] = $result['kayttajatunnus'];
-            // $_SESSION['userid'] = $result['kayttajaID'];
-            // $_SESSION['session_id'] = session_id();
+            $_SESSION['username'] = $result['username'];
+            $_SESSION['userid'] = $result['userid'];
+            $_SESSION['session_id'] = session_id();
             header("Location: /");
         }
     }
     require_once "views/login.view.php";
+}
+
+function logout_controller(){
+    session_unset();
+    session_destroy();
+
+    session_regenerate_id(true);
+    
+    header("Location: /login");
+    die();
 }
