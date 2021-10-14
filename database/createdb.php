@@ -31,7 +31,7 @@ $table2 = "CREATE TABLE topics (
     topicid INT(11) AUTO_INCREMENT PRIMARY KEY,
     userid INT(11) NOT NULL,
     title VARCHAR(30) NOT NULL,
-    date DATE NOT NULL
+    date VARCHAR(30) NOT NULL
 )";
 
 $table3 = "CREATE TABLE messages (
@@ -39,7 +39,7 @@ $table3 = "CREATE TABLE messages (
     topicid INT(11) NOT NULL,
     userid INT(11) NOT NULL,
     text VARCHAR(250) NOT NULL,
-    date DATE NOT NULL
+    date VARCHAR(30) NOT NULL
 )";
 
 $tables = [$table1, $table2, $table3];

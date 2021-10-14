@@ -8,6 +8,21 @@
 
 <h1>Etusivu</h1>
 
+<table>
 <?php foreach ($topics as $topic) {?>
-    <a href='/topic?topicid=<?= $topic["topicid"]?>'><?=$topic["title"]?></a><br>
+    <tr>
+        <th>
+            <a href='/topic?topicid=<?= $topic["topicid"]?>'>
+                <?=$topic["title"]?>
+            </a>
+        </th>
+        <th>
+            <?= count(getAllMessages($topic["topicid"]))?> posts
+        </th>
+        <th>
+            tekijä: <?=getUser($topic["userid"])[0]["username"]?><br>
+            date
+        </th>
+    </tr>
 <?php }?>
+</table>

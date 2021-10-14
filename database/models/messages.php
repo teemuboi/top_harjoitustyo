@@ -4,9 +4,10 @@ require_once "database/connection.php";
 function addMessage($text, $topicid){
     $pdo = connectDB();
     $userid = $_SESSION['userid'];
+    $date = date('d-m-Y H:i:s');
 
-    $data = [$topicid, $userid, $text];
-    $sql = "INSERT INTO messages (topicid, userid, text) VALUES (?, ?, ?)";
+    $data = [$topicid, $userid, $text, $date];
+    $sql = "INSERT INTO messages (topicid, userid, text, date) VALUES (?, ?, ?, ?)";
     $stm = $pdo->prepare($sql);
 
     return $stm->execute($data);

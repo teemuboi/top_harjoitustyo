@@ -8,7 +8,16 @@
 </form>
 <?php }?>
 
-
+<table>
 <?php foreach ($messages as $message) {?>
-    <?=$message["text"]?> | <?=getUser($message["userid"])[0]["username"]?><br>
+    <tr>
+        <th>
+            <?=$message["text"]?>
+        </th>
+        <th>
+            <?=getUser($message["userid"])[0]["username"]?><br>
+            <?=$message["date"]?>
+        </th>
+    </tr>
 <?php }?>
+</table>
