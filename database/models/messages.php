@@ -16,7 +16,7 @@ function addMessage($text, $topicid){
 function getAllMessages($topicid){
     $pdo = connectDB();
 
-    $sql = "SELECT * FROM `messages` WHERE topicid = $topicid";
+    $sql = "SELECT * FROM messages WHERE topicid = $topicid ORDER BY date DESC";
     $stm = $pdo->query($sql);
     $messages = $stm->fetchAll(PDO::FETCH_ASSOC);
 
@@ -26,7 +26,7 @@ function getAllMessages($topicid){
 function getMessage($messageid){
     $pdo = connectDB();
 
-    $sql = "SELECT * FROM `messages` WHERE messageid = $messageid";
+    $sql = "SELECT * FROM messages WHERE messageid = $messageid";
     $stm = $pdo->query($sql);
     $message = $stm->fetchAll(PDO::FETCH_ASSOC);
 
@@ -36,7 +36,7 @@ function getMessage($messageid){
 function getUser($userid){
     $pdo = connectDB();
 
-    $sql = "SELECT * FROM `users` WHERE userid = $userid";
+    $sql = "SELECT * FROM users WHERE userid = $userid";
     $stm = $pdo->query($sql);
     $user = $stm->fetchAll(PDO::FETCH_ASSOC);
 

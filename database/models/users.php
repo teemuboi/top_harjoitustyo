@@ -3,9 +3,10 @@ require_once "database/connection.php";
 
 function addUser($username, $password){
     $pdo = connectDB();
+    $role = "user";
 
-    $data = [$username, $password];
-    $sql = "INSERT INTO users (username, password) VALUES(?,?)";
+    $data = [$username, $password, $role];
+    $sql = "INSERT INTO users (username, password, role) VALUES(?,?,?)";
     $stm = $pdo->prepare($sql);
 
     return $stm->execute($data);

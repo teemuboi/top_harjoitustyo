@@ -17,11 +17,16 @@
             </a>
         </th>
         <th>
+            creator: <?=getUser($topic["userid"])[0]["username"]?><br>
+            <?php
+                if(getAllMessages($topic["topicid"])){
+            ?>
+                latest: <?=getAllMessages($topic["topicid"])["0"]["date"]?>
+            <?php }else{?>
+                created: <?=$topic["date"]?>
+            <?php }?>
+            <br>
             <?= count(getAllMessages($topic["topicid"]))?> posts
-        </th>
-        <th>
-            tekijä: <?=getUser($topic["userid"])[0]["username"]?><br>
-            date
         </th>
     </tr>
 <?php }?>

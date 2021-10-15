@@ -2,7 +2,7 @@
 require_once "database/models/users.php";
 
 function register_controller(){
-    if(isset($_POST['username'], $_POST['password'])) {
+    if(isset($_POST['username'], $_POST['password'])){
         $username = $_POST['username'];
         $password = $_POST['password'];
 
@@ -13,7 +13,7 @@ function register_controller(){
                 header("Location: /login");
             }
         } catch (PDOException $e) {
-            echo "Error saving to database: " . $e->getMessage();
+            echo "Error saving to database: ".$e->getMessage();
         }
     } else {
         require_once "views/register.view.php";
