@@ -17,12 +17,20 @@
             </a>
         </th>
         <th>
+            <?php
+                if($_SESSION['userid'] == $topic["userid"]){
+            ?>
+            <a href='/edittopic?topicid=<?= $topic["topicid"]?>'>edit</a><br>
+            <?php }?>
+
             creator: <?=getUser($topic["userid"])[0]["username"]?><br>
             <?php
                 if(getAllMessages($topic["topicid"])){
             ?>
+
                 latest: <?=getAllMessages($topic["topicid"])["0"]["date"]?>
             <?php }else{?>
+                
                 created: <?=$topic["date"]?>
             <?php }?>
             <br>

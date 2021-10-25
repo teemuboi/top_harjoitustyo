@@ -39,6 +39,10 @@ switch(explode("?", $_SERVER["REQUEST_URI"])[0]){
         viewtopic_controller();
     break;
 
+    case "/edittopic":
+        echo "edit";
+    break;
+
     case "/db":
         require_once "database/createdb.php";
     break;
