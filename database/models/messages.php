@@ -42,3 +42,13 @@ function getUser($userid){
 
     return $user;
 }
+
+function editMessage($text, $messageid){
+    $pdo = connectDB();
+
+    $sql = "UPDATE messages SET text = '$text' WHERE messageid = $messageid";
+    $stm = $pdo->query($sql);
+    $message = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+    return $message;
+}

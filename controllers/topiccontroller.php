@@ -25,3 +25,20 @@ function viewtopic_controller(){
         header("Location: /");
     }
 }
+
+function edittopic_controller(){
+    if(isset($_POST['title'])){
+        $title = $_POST['title'];
+
+        
+        try {
+            editTopic($title, $_GET['topicid']);
+            header("Location: /");
+        } catch (PDOException $e){
+            echo "Error saving to database: " . $e->getMessage();
+        }
+    }else{
+        $topic = getTopic($_GET['topicid']);
+        require_once "views/edittopic.view.php";
+    }
+}

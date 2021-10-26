@@ -1,6 +1,6 @@
-<h1>Edit topic</h1>
+<h1>Edit <u><?=$topic[0]["title"]?></u></h1>
 <form method="post">
-    Edit a topic<br>
-    <input type="text" name="title" placeholder="title" maxlength=30 required>
+    Edit topic<br>
+    <input type="text" name="title" placeholder="title" maxlength=30 value="<?=$topic[0]["title"]?>" required>
     <input type="submit" value="edit">
 </form>

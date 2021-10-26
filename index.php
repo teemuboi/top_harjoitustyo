@@ -40,7 +40,11 @@ switch(explode("?", $_SERVER["REQUEST_URI"])[0]){
     break;
 
     case "/edittopic":
-        echo "edit";
+        edittopic_controller();
+    break;
+
+    case "/editmessage":
+        editmessage_controller();
     break;
 
     case "/db":

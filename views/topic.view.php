@@ -15,6 +15,10 @@
             <?=$message["text"]?>
         </th>
         <th>
+            <?php if($_SESSION['userid'] == $message["userid"]){?>
+                <a href='/editmessage?messageid=<?= $message["messageid"]?>'>edit</a><br>
+            <?php }?>
+
             <?=getUser($message["userid"])[0]["username"]?><br>
             <?=$message["date"]?>
         </th>

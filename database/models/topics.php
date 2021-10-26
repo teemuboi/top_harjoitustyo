@@ -32,3 +32,13 @@ function getTopic($topicid){
 
     return $topic;
 }
+
+function editTopic($title, $topicid){
+    $pdo = connectDB();
+
+    $sql = "UPDATE topics SET title = '$title' WHERE topicid = $topicid";
+    $stm = $pdo->query($sql);
+    $topic = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+    return $topic;
+}
