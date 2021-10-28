@@ -4,7 +4,7 @@ require_once "database/connection.php";
 function addMessage($text, $topicid){
     $pdo = connectDB();
     $userid = $_SESSION['userid'];
-    $date = date('d-m-Y H:i:s');
+    $date = date('Y-m-d H:i:s'); //date('d-m-Y H:i:s')
 
     $data = [$topicid, $userid, $text, $date];
     $sql = "INSERT INTO messages (topicid, userid, text, date) VALUES (?, ?, ?, ?)";
@@ -51,4 +51,24 @@ function editMessage($text, $messageid){
     $message = $stm->fetchAll(PDO::FETCH_ASSOC);
 
     return $message;
+}
+
+function deleteMessage($messageid){
+    $pdo = connectDB();
+
+    $sql = "DELETE FROM messages WHERE messageid = $messageid";
+    $stm = $pdo->query($sql);
+    $message = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+    return $message;
+}
+
+function deleteMessages($topicid){
+    $pdo = connectDB();
+
+    $sql = "DELETE FROM messages WHERE topicid = $topicid";
+    $stm = $pdo->query($sql);
+    $messages = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+    return $messages;
 }

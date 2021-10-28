@@ -43,8 +43,16 @@ switch(explode("?", $_SERVER["REQUEST_URI"])[0]){
         edittopic_controller();
     break;
 
+    case "/deletetopic":
+        deletetopic_controller();
+    break;
+
     case "/editmessage":
         editmessage_controller();
+    break;
+
+    case "/deletemessage":
+        deletemessage_controller();
     break;
 
     case "/db":

@@ -8,29 +8,33 @@
 
 <h1>Etusivu</h1>
 
-<table>
+<table class="maintopics">
+    <th>Topics</th><th>Posts</th>
 <?php foreach ($topics as $topic) {?>
     <tr>
-        <th>
+        <td class="topics">
             <a href='/topic?topicid=<?=$topic["topicid"]?>'>
-                <?=$topic["title"]?>
-            </a>
-        </th>
-        <th>
-            <?php if($_SESSION['userid'] == $topic["userid"] && !getAllMessages($topic["topicid"])){?>
-                <a href='/edittopic?topicid=<?= $topic["topicid"]?>'>edit</a><br>
+                <b><?=$topic["title"]?></b>
+            </a><br>
+            creator: <b><?=getUser($topic["userid"])[0]["username"]?></b>
+        </td>
+        <td class="posts">
+            <?=count(getAllMessages($topic["topicid"]))?> posts
+        </td>
+        <td class="date">
+            <?php if(isLoggedIn() && $_SESSION['userid'] == $topic["userid"]){
+            if(!getAllMessages($topic["topicid"])){?>
+                <a href='/edittopic?topicid=<?= $topic["topicid"]?>'>edit</a> 
+            <?php }?>
+                <a href='/deletetopic?topicid=<?= $topic["topicid"]?>'>delete</a><br>
             <?php }?>
             
-            creator: <?=getUser($topic["userid"])[0]["username"]?><br>
-
             <?php if(getAllMessages($topic["topicid"])){?>
                 latest: <?=getAllMessages($topic["topicid"])["0"]["date"]?>
             <?php }else{?>
                 created: <?=$topic["date"]?>
-            <?php }?><br>
-
-            <?=count(getAllMessages($topic["topicid"]))?> posts
-        </th>
+            <?php }?>
+        </td>
     </tr>
 <?php }?>
 </table>

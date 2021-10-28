@@ -8,20 +8,21 @@
 </form>
 <?php }?>
 
-<table>
+<table class="viewtopic">
 <?php foreach ($messages as $message) {?>
     <tr>
-        <th>
+        <td class="text">
             <?=$message["text"]?>
-        </th>
-        <th>
-            <?php if($_SESSION['userid'] == $message["userid"]){?>
-                <a href='/editmessage?messageid=<?= $message["messageid"]?>'>edit</a><br>
+        </td>
+        <td class="info">
+            <?php if(isLoggedIn() && $_SESSION['userid'] == $message["userid"]){?>
+                <a href='/editmessage?messageid=<?= $message["messageid"]?>'>edit</a> 
+                <a href='/deletemessage?messageid=<?= $message["messageid"]?>'>delete</a><br>
             <?php }?>
 
-            <?=getUser($message["userid"])[0]["username"]?><br>
+            <b><?=getUser($message["userid"])[0]["username"]?></b><br>
             <?=$message["date"]?>
-        </th>
+        </td>
     </tr>
 <?php }?>
 </table>

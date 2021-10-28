@@ -23,10 +23,20 @@ function editmessage_controller(){
             editMessage($text, $messageid);
             header("Location: /topic?topicid=".getMessage($messageid)[0]["topicid"]);
         } catch (PDOException $e){
-            echo "Error saving to database: " . $e->getMessage();
+            echo "Error editing table: " . $e->getMessage();
         }
     }else{
         $message = getMessage($_GET['messageid']);
-        require_once "views/editmessage.view.php";
+        if($_SESSION['userid'] == $message[0]["userid"]){
+            require_once "views/editmessage.view.php";
+        }else{
+            header("Location: /");
+        }
     }
+}
+
+function deletemessage_controller(){
+    $messageid = $_GET['messageid'];
+    deleteMessage($messageid);
+    header("Location: /".explode("/", $_SERVER["HTTP_REFERER"])[3]);
 }

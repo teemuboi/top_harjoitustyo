@@ -11,6 +11,17 @@ table {
     width: 100%;
 }
 
-/* th {
-    width: 10px;
-} */
+.maintopics .posts{
+    width: 100px;
+    text-align: center;
+}
+
+.maintopics .date{
+    width: 200px;
+    text-align: center;
+}
+
+.viewtopic .info{
+    width: 200px;
+    /* text-align: center; */
+}
