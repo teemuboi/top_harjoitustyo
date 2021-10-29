@@ -7,7 +7,7 @@
     <title>Keskusteluforum</title>
 </head>
 <body>
-<a href='/'><h1>Keskustelu forum</h1></a>
+<h1><a href='/'>Keskustelu forum</a></h1>
 
 <?php if(isLoggedIn()){?>
     <?= $_SESSION['username']?><br>

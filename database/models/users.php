@@ -31,7 +31,14 @@ function login($username, $password){
 
 function isLoggedIn(){
     if(isset($_SESSION['username'], $_SESSION['userid']) 
-    && ($_SESSION['session_id'] == session_id())){
+    && $_SESSION['session_id'] == session_id()){
+        return true;
+    }
+    return false;
+}
+
+function isAdmin(){
+    if(isLoggedIn() && $_SESSION['role'] == "admin"){
         return true;
     }
     return false;

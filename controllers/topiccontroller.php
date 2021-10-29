@@ -41,7 +41,11 @@ function edittopic_controller(){
         }
     }else{
         $topic = getTopic($_GET['topicid']);
-        if($_SESSION['userid'] == $topic[0]["userid"]){
+        if(!isset($topic[0]["userid"])){
+            header("Location: /");
+        }
+        
+        if($_SESSION['userid'] == $topic[0]["userid"] || isAdmin()){
             require_once "views/edittopic.view.php";
         }else{
             header("Location: /");
@@ -50,12 +54,21 @@ function edittopic_controller(){
 }
 
 function deletetopic_controller(){
-    $topicid = $_GET['topicid'];
-    try {
-        deleteMessages($topicid);
-        deleteTopic($topicid);
+    $topic = getTopic($_GET['topicid']);
+    if(!isset($topic[0]["userid"])){
         header("Location: /");
-    } catch (PDOException $e){
-        echo "Error deleting table: " . $e->getMessage();
+    }
+    
+    if($_SESSION['userid'] == $topic[0]["userid"] || isAdmin()){
+        $topicid = $_GET['topicid'];
+        try {
+            deleteMessages($topicid);
+            deleteTopic($topicid);
+            header("Location: /");
+        } catch (PDOException $e){
+            echo "Error deleting table: " . $e->getMessage();
+        }
+    }else{
+        header("Location: /");
     }
 }

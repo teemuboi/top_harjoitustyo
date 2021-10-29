@@ -27,16 +27,31 @@ function editmessage_controller(){
         }
     }else{
         $message = getMessage($_GET['messageid']);
-        if($_SESSION['userid'] == $message[0]["userid"]){
+        if(!isset($message[0]["userid"])){
+            header("Location: /");
+        }
+
+        if($_SESSION['userid'] == $message[0]["userid"] || isAdmin()){
             require_once "views/editmessage.view.php";
         }else{
-            header("Location: /");
+            // header("Location: /");
+            header("Location: /topic?topicid=".$message[0]["topicid"]);
         }
     }
 }
 
 function deletemessage_controller(){
-    $messageid = $_GET['messageid'];
-    deleteMessage($messageid);
-    header("Location: /".explode("/", $_SERVER["HTTP_REFERER"])[3]);
+    $message = getMessage($_GET['messageid']);
+    if(!isset($message[0]["userid"])){
+        header("Location: /");
+    }
+    
+    if($_SESSION['userid'] == $message[0]["userid"] || isAdmin()){
+        $messageid = $_GET['messageid'];
+        deleteMessage($messageid);
+        header("Location: /".explode("/", $_SERVER["HTTP_REFERER"])[3]);
+    }else{
+        // header("Location: /");
+        header("Location: /topic?topicid=".$message[0]["topicid"]);
+    }
 }

@@ -9,14 +9,18 @@ function register_controller(){
         try {
             if(!addUser($username, $password)){
                 require_once "views/register.view.php";
-            } else {
+            }else{
                 header("Location: /login");
             }
         } catch (PDOException $e) {
             echo "Error saving to database: ".$e->getMessage();
         }
-    } else {
-        require_once "views/register.view.php";
+    }else{
+        if(isLoggedIn()){
+            header("Location: /");
+        }else{
+            require_once "views/register.view.php";
+        }
     }
 }
 
@@ -29,11 +33,16 @@ function login_controller(){
         if($result){
             $_SESSION['username'] = $result['username'];
             $_SESSION['userid'] = $result['userid'];
+            $_SESSION['role'] = $result['role'];
             $_SESSION['session_id'] = session_id();
             header("Location: /");
         }
     }
-    require_once "views/login.view.php";
+    if(isLoggedIn()){
+        header("Location: /");
+    }else{
+        require_once "views/login.view.php";
+    }
 }
 
 function logout_controller(){

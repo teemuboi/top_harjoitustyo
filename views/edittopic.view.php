@@ -1,3 +1,6 @@
+<a href='/'>
+    go back
+</a>
 <h1>Edit <u><?=$topic[0]["title"]?></u></h1>
 <form method="post">
     Edit topic<br>
