@@ -30,7 +30,19 @@ function getMessage($messageid){
     $stm = $pdo->query($sql);
     $message = $stm->fetchAll(PDO::FETCH_ASSOC);
 
-    return $message;
+    return $message[0];
+}
+
+function getMessageDate($topicid){
+    $pdo = connectDB();
+
+    $sql = "SELECT date FROM messages WHERE topicid = $topicid ORDER BY date DESC LIMIT 1";
+    $stm = $pdo->query($sql);
+    $message = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+    if($message){
+        return $message[0]["date"];
+    }
 }
 
 function getUser($userid){
@@ -40,7 +52,7 @@ function getUser($userid){
     $stm = $pdo->query($sql);
     $user = $stm->fetchAll(PDO::FETCH_ASSOC);
 
-    return $user;
+    return $user[0];
 }
 
 function editMessage($text, $messageid){

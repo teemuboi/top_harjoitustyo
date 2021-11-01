@@ -1,7 +1,7 @@
 <a href='/'>
     go back
 </a>
-<h2><?= $topic[0]["title"]?></h2>
+<h1><?= $topic["title"]?></h1>
 
 <?php if(isLoggedIn()){?>
 <form method="post">
@@ -19,11 +19,13 @@
             <?=nl2br($message["text"])?>
         </td>
         <td class="info">
-            <b><?=getUser($message["userid"])[0]["username"]?></b><br>
+            <b><?=getUser($message["userid"])["username"]?></b><br>
             <?=$message["date"]?><br>
             <?php if(isLoggedIn() && $_SESSION['userid'] == $message["userid"] || isAdmin()){?>
                 <a href='/editmessage?messageid=<?= $message["messageid"]?>'>edit</a> 
                 <a href='/deletemessage?messageid=<?= $message["messageid"]?>'>delete</a>
+            <?php }else{?>
+                <br>
             <?php }?>
         </td>
     </tr>

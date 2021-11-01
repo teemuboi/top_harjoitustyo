@@ -1,15 +1,62 @@
 body {
-    /* margin: 0; */
+    margin: 0;
     word-break: break-all;
 }
 
+h1 {
+    margin: 0;
+}
+
+header {
+    display: flex;
+    background-color: rgb(179, 179, 179);
+    padding: 20px;
+}
+
+header a{
+    text-decoration: none;
+    color: black;
+}
+
+header .usermenu{
+    position: absolute;
+    right: 0;
+    padding-right: 20px;
+}
+
+header .usermenu a:hover{
+    text-decoration: underline;
+}
+
 table, th, tr {
-    border: 1px solid black;
+    border: 0.5px solid black;
 }
 
 table {
     border-collapse: collapse;
     width: 100%;
+}
+
+.maintopics .topics{
+    position: relative;
+}
+
+.maintopics a{
+    text-decoration: none;
+}
+
+.maintopics .topics i{
+    position: absolute;
+    bottom: 0;
+}
+
+.maintopics .topics a{
+    margin: 30px;
+    font-size: large;
+}
+
+.maintopics a:hover{
+    text-decoration: underline;
 }
 
 .maintopics .posts{
@@ -18,9 +65,13 @@ table {
 }
 
 .maintopics .date{
-    width: 200px;
+    width: 230px;
     text-align: center;
     vertical-align: text-top;
+}
+
+.maintopics .date a{
+    color: red;
 }
 
 .maintopics .topics, .viewtopic .text{
@@ -33,6 +84,20 @@ table {
     vertical-align: text-top;
 }
 
+.viewtopic .info a{
+    text-decoration: none;
+    color: red;
+}
+
+.viewtopic .info a:hover{
+    text-decoration: underline;
+}
+
 textarea {
     resize: none;
+    width: 100%;
+}
+
+.pageview {
+    margin: 10px;
 }

@@ -7,6 +7,31 @@
 </form>
 <?php }?>
 
+<?php if($page-1 != 0){
+    if($page-1 != 1){?>
+        <a href='/?page=1'>
+            1
+        </a>
+    <?php }?>
+
+    <a href='/?page=<?=$page-1?>'>
+        <
+    </a>
+<?php }?>
+
+<?=$page?>
+
+<?php if($page*$maxpage <= $topiccount){?>
+    <a href='/?page=<?=$page+1?>'>
+        >
+    </a>
+
+    <?php if($page+1 != ceil($topiccount/$maxpage)){?>
+    <a href='/?page=<?=ceil($topiccount/$maxpage)?>'>
+        <?=ceil($topiccount/$maxpage)?>
+    </a>
+<?php }}?>
+
 <table class="maintopics">
     <th>Topics</th><th>Posts</th>
 <?php foreach ($topics as $topic) {?>
@@ -15,7 +40,7 @@
             <a href='/topic?topicid=<?=$topic["topicid"]?>'>
                 <b><?=$topic["title"]?></b>
             </a><br>
-            <i>creator: <?=getUser($topic["userid"])[0]["username"]?></i>
+            <i>creator: <?=getUser($topic["userid"])["username"]?></i>
         </td>
         <td class="posts">
             <?=count(getAllMessages($topic["topicid"]))?> posts
@@ -27,11 +52,15 @@
                 created: <?=$topic["date"]?>
             <?php }?><br>
 
+            last modified: <?=$topic["lastmodified"]?><br>
+
             <?php if(isLoggedIn() && $_SESSION['userid'] == $topic["userid"] || isAdmin()){
             if(!getAllMessages($topic["topicid"]) || isAdmin()){?>
                 <a href='/edittopic?topicid=<?= $topic["topicid"]?>'>edit</a> 
             <?php }?>
                 <a href='/deletetopic?topicid=<?= $topic["topicid"]?>'>delete</a>
+            <?php }else{?>
+                <br>
             <?php }?>
         </td>
     </tr>

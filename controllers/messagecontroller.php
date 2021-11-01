@@ -21,37 +21,37 @@ function editmessage_controller(){
 
         try {
             editMessage($text, $messageid);
-            header("Location: /topic?topicid=".getMessage($messageid)[0]["topicid"]);
+            header("Location: /topic?topicid=".getMessage($messageid)["topicid"]);
         } catch (PDOException $e){
             echo "Error editing table: " . $e->getMessage();
         }
     }else{
         $message = getMessage($_GET['messageid']);
-        if(!isset($message[0]["userid"])){
+        if(!isset($message["userid"])){
             header("Location: /");
         }
 
-        if($_SESSION['userid'] == $message[0]["userid"] || isAdmin()){
+        if($_SESSION['userid'] == $message["userid"] || isAdmin()){
             require_once "views/editmessage.view.php";
         }else{
             // header("Location: /");
-            header("Location: /topic?topicid=".$message[0]["topicid"]);
+            header("Location: /topic?topicid=".$message["topicid"]);
         }
     }
 }
 
 function deletemessage_controller(){
     $message = getMessage($_GET['messageid']);
-    if(!isset($message[0]["userid"])){
+    if(!isset($message["userid"])){
         header("Location: /");
     }
     
-    if($_SESSION['userid'] == $message[0]["userid"] || isAdmin()){
+    if($_SESSION['userid'] == $message["userid"] || isAdmin()){
         $messageid = $_GET['messageid'];
         deleteMessage($messageid);
         header("Location: /".explode("/", $_SERVER["HTTP_REFERER"])[3]);
     }else{
         // header("Location: /");
-        header("Location: /topic?topicid=".$message[0]["topicid"]);
+        header("Location: /topic?topicid=".$message["topicid"]);
     }
 }

@@ -41,11 +41,11 @@ function edittopic_controller(){
         }
     }else{
         $topic = getTopic($_GET['topicid']);
-        if(!isset($topic[0]["userid"])){
+        if(!isset($topic["userid"])){
             header("Location: /");
         }
         
-        if($_SESSION['userid'] == $topic[0]["userid"] || isAdmin()){
+        if($_SESSION['userid'] == $topic["userid"] || isAdmin()){
             require_once "views/edittopic.view.php";
         }else{
             header("Location: /");
@@ -55,11 +55,11 @@ function edittopic_controller(){
 
 function deletetopic_controller(){
     $topic = getTopic($_GET['topicid']);
-    if(!isset($topic[0]["userid"])){
+    if(!isset($topic["userid"])){
         header("Location: /");
     }
     
-    if($_SESSION['userid'] == $topic[0]["userid"] || isAdmin()){
+    if($_SESSION['userid'] == $topic["userid"] || isAdmin()){
         $topicid = $_GET['topicid'];
         try {
             deleteMessages($topicid);

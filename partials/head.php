@@ -7,13 +7,17 @@
     <title>Keskusteluforum</title>
 </head>
 <body>
-<h1><a href='/'>Keskustelu forum</a></h1>
-
-<?php if(isLoggedIn()){?>
-    <?= $_SESSION['username']?><br>
-    <a href='/logout'>Kirjaudu ulos</a><br>
-<?php }else{?>
-    <a href='/register'>rekisteröidy</a><br>
-    <a href='/login'>kirjaudu sisään</a>
-<?php }?>
+<header>
+    <h1 class="title"><a href='/'>Keskustelu forum</a></h1>
+    <div class="usermenu">
+    <?php if(isLoggedIn()){?>
+        <?= $_SESSION['username']?><br>
+        <a href='/logout'>Kirjaudu ulos</a><br>
+    <?php }else{?>
+        <a href='/register'>rekisteröidy</a><br>
+        <a href='/login'>kirjaudu sisään</a>
+    <?php }?>
+    </div>
+</header>
 <hr/>
+<div class="pageview">

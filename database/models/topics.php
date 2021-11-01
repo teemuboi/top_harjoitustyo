@@ -4,10 +4,11 @@ require_once "database/connection.php";
 function addTopic($title){
     $pdo = connectDB();
     $userid = $_SESSION['userid'];
-    $date = date('Y-m-d'); //date('d-m-Y H:i:s')
+    $date = date('Y-m-d H:i:s'); //date('d-m-Y H:i:s')
+    $modifiedby = $_SESSION['userid'];
 
-    $data = [$userid, $title, $date];
-    $sql = "INSERT INTO topics (userid, title, date) VALUES (?, ?, ?)";
+    $data = [$userid, $title, $date, $modifiedby];
+    $sql = "INSERT INTO topics (userid, title, date, modifiedby) VALUES (?, ?, ?, ?)";
     $stm = $pdo->prepare($sql);
 
     return $stm->execute($data);
@@ -30,13 +31,25 @@ function getTopic($topicid){
     $stm = $pdo->query($sql);
     $topic = $stm->fetchAll(PDO::FETCH_ASSOC);
 
+    return $topic[0];
+}
+
+function getTopicDate($topicid){
+    $pdo = connectDB();
+
+    $sql = "SELECT date FROM topics WHERE topicid = $topicid";
+    $stm = $pdo->query($sql);
+    $topic = $stm->fetchAll(PDO::FETCH_ASSOC);
+
     return $topic;
 }
 
 function editTopic($title, $topicid){
     $pdo = connectDB();
+    $modifiedby = $_SESSION['userid'];
+    $lastmodified = date('Y-m-d H:i:s');
 
-    $sql = "UPDATE topics SET title = '$title' WHERE topicid = $topicid";
+    $sql = "UPDATE topics SET title = '$title', modifiedby = '$modifiedby', lastmodified = '$lastmodified' WHERE topicid = $topicid";
     $stm = $pdo->query($sql);
     $topic = $stm->fetchAll(PDO::FETCH_ASSOC);
 
