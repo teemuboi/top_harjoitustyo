@@ -101,3 +101,8 @@ textarea {
 .pageview {
     margin: 10px;
 }
+
+footer {
+    background-color: rgb(179, 179, 179);
+    height: auto;
+}

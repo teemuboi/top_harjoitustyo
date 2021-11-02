@@ -1,9 +1,10 @@
 <a href='/'>
     go back
 </a>
-<h2>Edit <u><?=$topic["title"]?></u></h2>
+<h2>Edit topic: <u><?=$topic["title"]?></u></h2>
 Date created: <?=$topic["date"]?><br>
 Created by: <?=getUser($topic["userid"])["username"]?><br>
+Number of posts: <?=count(getAllMessages($topic["topicid"]))?><br>
 Last modified: <?=$topic["lastmodified"]?><br>
 Last modified by: <?=getUser($topic["modifiedby"])["username"]?><br><br>
 <form method="post">

@@ -25,7 +25,6 @@ function frontpage_controller(){
     }
     $maxpage = 10;
     $topiccount = count($topics);
-    // echo $maxpage*($page-1)." ".$topiccount;
     $topics = array_slice($topics, $maxpage*($page-1), $maxpage);
 
     require_once "views/main.view.php";
