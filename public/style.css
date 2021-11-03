@@ -1,6 +1,11 @@
 body {
     margin: 0;
     word-break: break-all;
+    font-family: Arial, sans-serif;
+    /* background-color: rgb(247, 247, 247); */
+
+    background: rgb(232,232,252);
+    background: linear-gradient(0deg, rgba(218,232,252,1) 12%, rgba(245,255,255,1) 67%);
 }
 
 h1 {
@@ -9,19 +14,28 @@ h1 {
 
 header {
     display: flex;
-    background-color: rgb(179, 179, 179);
+    background-color: rgb(121, 124, 207);
     padding: 20px;
+}
+
+header .title a{
+    color: white;
+    text-shadow: 2px 2px 5px black;
 }
 
 header a{
     text-decoration: none;
-    color: black;
 }
 
 header .usermenu{
+    color: black;
     position: absolute;
     right: 0;
     padding-right: 20px;
+}
+
+header .usermenu a{
+    color: black;
 }
 
 header .usermenu a:hover{
@@ -32,9 +46,22 @@ table, th, tr {
     border: 0.5px solid black;
 }
 
+th {
+    background-color: rgb(199, 204, 230);
+}
+
+tr:nth-child(even) {
+    background-color: rgb(230, 230, 230);
+}
+
+tr:nth-child(odd) {
+    background-color: rgb(247, 247, 247);
+}
+
 table {
     border-collapse: collapse;
     width: 100%;
+    box-shadow: 7px 10px 10px rgba(82, 89, 92, 0.432);
 }
 
 .maintopics .topics{
@@ -48,6 +75,8 @@ table {
 .maintopics .topics i{
     position: absolute;
     bottom: 0;
+    color: grey;
+    font-size: 14px;
 }
 
 .maintopics .topics a{
@@ -64,19 +93,29 @@ table {
     text-align: center;
 }
 
-.maintopics .date{
-    width: 230px;
+.maintopics .info{
+    width: 250px;
     text-align: center;
     vertical-align: text-top;
 }
 
-.maintopics .date a{
-    color: red;
+.maintopics .info a{
+    color: rgb(197, 0, 0);
+}
+
+.maintopics .date{
+    text-align: right;
+    font-size: 14px;
 }
 
 .maintopics .topics, .viewtopic .text{
     padding-right: 20px;
     word-break: break-all;
+}
+
+.viewtopic .text{
+    line-height: 17px;
+    /* white-space: pre; */
 }
 
 .viewtopic .info{
@@ -99,10 +138,11 @@ textarea {
 }
 
 .pageview {
-    margin: 10px;
+    margin: 20px;
 }
 
 footer {
-    background-color: rgb(179, 179, 179);
-    height: auto;
+    background-color: rgb(121, 124, 207);
+    /* width: 100%;
+    height: 100px; */
 }

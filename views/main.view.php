@@ -33,7 +33,7 @@
 <?php }}?>
 
 <table class="maintopics">
-    <th>Topics</th><th>Posts</th>
+    <th>Topics</th><th>Posts</th><th></th>
 <?php foreach ($topics as $topic) {?>
     <tr>
         <td class="topics">
@@ -45,14 +45,16 @@
         <td class="posts">
             <?=count(getAllMessages($topic["topicid"]))?> posts
         </td>
-        <td class="date">
-            <?php if(getAllMessages($topic["topicid"])){?>
-                latest: <?=getAllMessages($topic["topicid"])["0"]["date"]?>
-            <?php }else{?>
-                created: <?=$topic["date"]?>
-            <?php }?><br>
+        <td class="info">
+            <div class="date">
+                <?php if(getAllMessages($topic["topicid"])){?>
+                    latest: <?=getAllMessages($topic["topicid"])["0"]["date"]?>
+                <?php }else{?>
+                    created: <?=$topic["date"]?>
+                <?php }?><br>
 
-            last modified: <?=$topic["lastmodified"]?><br>
+                last modified: <?=$topic["lastmodified"]?><br>
+            </div>
 
             <?php if(isLoggedIn() && $_SESSION['userid'] == $topic["userid"] || isAdmin()){
             if(!getAllMessages($topic["topicid"]) || isAdmin()){?>

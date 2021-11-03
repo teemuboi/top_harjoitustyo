@@ -19,5 +19,5 @@
     <?php }?>
     </div>
 </header>
-<hr/>
+<!-- <hr/> -->
 <div class="pageview">
