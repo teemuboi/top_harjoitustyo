@@ -23,7 +23,7 @@ function frontpage_controller(){
     }else{
         $page = 1;
     }
-    $maxpage = 10;
+    $maxpage = 12;
     $topiccount = count($topics);
     $topics = array_slice($topics, $maxpage*($page-1), $maxpage);
 

@@ -1,4 +1,4 @@
-<h1>Etusivu</h1>
+<!-- <h1>Etusivu</h1> -->
 <?php if(isLoggedIn()){?>
 <form method="post">
     Create a topic<br>
@@ -21,7 +21,7 @@
 
 <?=$page?>
 
-<?php if($page*$maxpage <= $topiccount){?>
+<?php if($page*$maxpage < $topiccount){?>
     <a href='/?page=<?=$page+1?>'>
         >
     </a>
