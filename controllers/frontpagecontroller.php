@@ -4,7 +4,10 @@ require_once "database/models/topics.php";
 function frontpage_controller(){
     topic_controller();
     $topics = getAllTopics();
- 
+
+    //aiheet eivät järjestäydy kunnolla. 
+    //aiheet järjestäytyvät päivän mukaan mutta ei ajan
+    //created ja latest eivät järjestäydy oikein
     function date_sort($a, $b){
         if(getMessageDate($b["topicid"])){
             if(getMessageDate($a["topicid"])){
