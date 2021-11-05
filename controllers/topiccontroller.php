@@ -4,6 +4,7 @@ require_once "database/models/messages.php";
 
 function topic_controller(){
     if(isset($_POST['title'])){
+        //sterilize input
         $title = $_POST['title'];
 
         try {
@@ -31,6 +32,7 @@ function viewtopic_controller(){
 
 function edittopic_controller(){
     if(isset($_POST['title'])){
+        //sterilize input
         $title = $_POST['title'];
 
         try {

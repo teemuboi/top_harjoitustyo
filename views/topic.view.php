@@ -15,11 +15,8 @@
 <table class="viewtopic">
 <?php foreach ($messages as $message) {?>
     <tr>
-        <td class="text">
-            <?=nl2br($message["text"])?>
-        </td>
+        <td class="text"><div class="content"><?=$message["text"]?></div><i class="username"><?=getUser($message["userid"])["username"]?></i></td>
         <td class="info">
-            <b><?=getUser($message["userid"])["username"]?></b><br>
             <?=$message["date"]?><br>
             <?php if(isLoggedIn() && $_SESSION['userid'] == $message["userid"] || isAdmin()){?>
                 <a href='/editmessage?messageid=<?= $message["messageid"]?>'>edit</a> 

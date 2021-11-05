@@ -3,6 +3,7 @@ require_once "database/models/messages.php";
 
 function messages_controller(){
     if(isset($_POST['text'])){
+        //sterilize input
         $text = $_POST['text'];
         $topicid = $_GET['topicid'];
 
@@ -16,6 +17,7 @@ function messages_controller(){
 
 function editmessage_controller(){
     if(isset($_POST['text'])){
+        //sterilize input
         $text = $_POST['text'];
         $messageid = $_GET['messageid'];
 

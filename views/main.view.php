@@ -7,7 +7,8 @@
 </form>
 <?php }?>
 
-<?php if($page-1 != 0){
+<?php if(isset($page)){
+if($page-1 != 0){
     if($page-1 != 1){?>
         <a href='/?page=1'>
             1
@@ -30,11 +31,11 @@
     <a href='/?page=<?=ceil($topiccount/$maxpage)?>'>
         <?=ceil($topiccount/$maxpage)?>
     </a>
-<?php }}?>
+<?php }}}?>
 
 <table class="maintopics">
     <th>Topics</th><th>Posts</th><th></th>
-<?php foreach ($topics as $topic) {?>
+<?php foreach($topics as $topic){?>
     <tr>
         <td class="topics">
             <a href='/topic?topicid=<?=$topic["topicid"]?>'>

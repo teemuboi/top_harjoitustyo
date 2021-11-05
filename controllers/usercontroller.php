@@ -3,6 +3,7 @@ require_once "database/models/users.php";
 
 function register_controller(){
     if(isset($_POST['username'], $_POST['password'])){
+        //sterilize input
         $username = $_POST['username'];
         $password = $_POST['password'];
 

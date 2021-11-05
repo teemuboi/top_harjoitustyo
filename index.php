@@ -55,10 +55,6 @@ switch(explode("?", $_SERVER["REQUEST_URI"])[0]){
         deletemessage_controller();
     break;
 
-    case "/db":
-        require_once "database/createdb.php";
-    break;
-
     default:
       echo "404";
 }

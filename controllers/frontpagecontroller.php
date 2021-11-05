@@ -5,30 +5,48 @@ function frontpage_controller(){
     topic_controller();
     $topics = getAllTopics();
 
-    //aiheet eivät järjestäydy kunnolla. 
-    //aiheet järjestäytyvät päivän mukaan mutta ei ajan
-    //created ja latest eivät järjestäydy oikein
+    //hopefully fixed, but look for more bugs
     function date_sort($a, $b){
-        if(getMessageDate($b["topicid"])){
-            if(getMessageDate($a["topicid"])){
+        // if(getMessageDate($b["topicid"])){ //some topics dont always sort right.
+        //     if(getMessageDate($a["topicid"])){
+        //         return strtotime(getMessageDate($b["topicid"])) - 
+        //         strtotime(getMessageDate($a["topicid"]));
+        //     }
+        //     return strtotime(getMessageDate($b["topicid"])) - strtotime($a["date"]);
+        // }
+        // return strtotime($b["date"]) - strtotime($a["date"]);
+
+        if(getMessageDate($b["topicid"]) || getMessageDate($a["topicid"])){
+            if(getMessageDate($b["topicid"]) && getMessageDate($a["topicid"])){
                 return strtotime(getMessageDate($b["topicid"])) - 
                 strtotime(getMessageDate($a["topicid"]));
             }
-            return strtotime(getMessageDate($b["topicid"])) - strtotime($a["date"]);
+            if(getMessageDate($a["topicid"])){
+                return strtotime($b["date"]) - 
+                strtotime(getMessageDate($a["topicid"]));
+            }
+            if(getMessageDate($b["topicid"])){
+                return strtotime(getMessageDate($b["topicid"])) - 
+                strtotime($a["date"]);
+            }
         }
+
         return strtotime($b["date"]) - strtotime($a["date"]);
     }
-    usort($topics, "date_sort");
+    if(isset($topics) && is_array($topics)){
+        //sorts topics
+        usort($topics, "date_sort");
 
-
-    if(isset($_GET["page"]) && is_numeric($_GET["page"])){
-        $page = $_GET["page"];
-    }else{
-        $page = 1;
+        //checks if page number is a number or exists
+        if(isset($_GET["page"]) && is_numeric($_GET["page"])){
+            $page = $_GET["page"];
+        }else{
+            $page = 1;
+        }
+        $maxpage = 12; //how many topics per page
+        $topiccount = count($topics); //total amount of topics
+        $topics = array_slice($topics, $maxpage*($page-1), $maxpage); //breaks the topic array to pages
     }
-    $maxpage = 12;
-    $topiccount = count($topics);
-    $topics = array_slice($topics, $maxpage*($page-1), $maxpage);
 
     require_once "views/main.view.php";
 }

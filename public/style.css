@@ -115,10 +115,27 @@ table {
     word-break: break-all;
 }
 
-/* .viewtopic .text{
-    line-height: 17px;
+.viewtopic td{
+    height: 50px;
+}
+
+.viewtopic .text{
+    position: relative;
+}
+
+.viewtopic .text .content{
+    /* line-height: 17px; */
     white-space: pre;
-} */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.viewtopic .username{
+    position: absolute;
+    top: 0;
+    color: rgb(77, 77, 77);
+    font-size: 14px;
+}
 
 .viewtopic .info{
     width: 200px;
