@@ -39,7 +39,7 @@ if($page-1 != 0){
     <tr>
         <td class="topics">
             <a href='/topic?topicid=<?=$topic["topicid"]?>'>
-                <b><?=$topic["title"]?></b>
+                <b><?=htmlentities($topic["title"])?></b>
             </a><br>
             <i>creator: <?=getUser($topic["userid"])["username"]?></i>
         </td>

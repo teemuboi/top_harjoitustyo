@@ -15,11 +15,13 @@
 <table class="viewtopic">
 <?php foreach ($messages as $message) {?>
     <tr>
-        <td class="text"><div class="content"><?=$message["text"]?></div><i class="username"><?=getUser($message["userid"])["username"]?></i></td>
+        <td class="text"><i class="username"><?=getUser($message["userid"])["username"]?></i><div class="content"><?=censor_input(htmlentities($message["text"]))?></div></td>
         <td class="info">
             <?=$message["date"]?><br>
             <?php if(isLoggedIn() && $_SESSION['userid'] == $message["userid"] || isAdmin()){?>
-                <a href='/editmessage?messageid=<?= $message["messageid"]?>'>edit</a> 
+                <?php if($_SESSION['userid'] == $message["userid"] || !isAdmin()){?>
+                    <a href='/editmessage?messageid=<?= $message["messageid"]?>'>edit</a>
+                <?php }?>
                 <a href='/deletemessage?messageid=<?= $message["messageid"]?>'>delete</a>
             <?php }else{?>
                 <br>
