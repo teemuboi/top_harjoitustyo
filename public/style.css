@@ -8,6 +8,10 @@ body {
     background: linear-gradient(-25deg, rgb(197, 208, 223) 12%, rgba(245,255,255,1) 67%);
 }
 
+/* * {
+    border-style: solid;
+} */
+
 h1 {
     margin: 0;
 }
@@ -124,21 +128,21 @@ table {
 }
 
 .viewtopic .text .content{
-    /* line-height: 17px; */
-    white-space: pre;
+    /* letter-spacing: -1px;
+    line-height: 17px; */
+    white-space: pre-wrap;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
 .viewtopic .username{
     position: absolute;
-    top: 0;
     color: rgb(77, 77, 77);
     font-size: 14px;
 }
 
 .viewtopic .info{
-    width: 200px;
+    width: 84px;
     vertical-align: text-top;
 }
 
@@ -149,6 +153,15 @@ table {
 
 .viewtopic .info a:hover{
     text-decoration: underline;
+}
+
+.viewtopic .vote{
+    /* width: max-content; */
+    width: 30px;
+    vertical-align: text-top;
+    text-align: center;
+    /* word-break: normal; */
+    user-select: none;
 }
 
 textarea {

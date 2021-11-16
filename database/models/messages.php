@@ -45,6 +45,15 @@ function getMessageDate($topicid){
     }
 }
 
+function dateConvert($date){
+    $date = explode(" ", $date);
+    if($date[0] == date('Y-m-d')){
+        return $date[1];
+    }else{
+        return $date[0];
+    }
+}
+
 function getUser($userid){
     $pdo = connectDB();
 

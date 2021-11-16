@@ -17,7 +17,7 @@
     <tr>
         <td class="text"><i class="username"><?=getUser($message["userid"])["username"]?></i><div class="content"><?=censor_input(htmlentities($message["text"]))?></div></td>
         <td class="info">
-            <?=$message["date"]?><br>
+            <?=dateConvert($message["date"])?><br>
             <?php if(isLoggedIn() && $_SESSION['userid'] == $message["userid"] || isAdmin()){?>
                 <?php if($_SESSION['userid'] == $message["userid"] || !isAdmin()){?>
                     <a href='/editmessage?messageid=<?= $message["messageid"]?>'>edit</a>
@@ -26,6 +26,11 @@
             <?php }else{?>
                 <br>
             <?php }?>
+        </td>
+        <td class="vote">
+            ▲<br>
+            0<br>
+            ▼
         </td>
     </tr>
 <?php }?>
