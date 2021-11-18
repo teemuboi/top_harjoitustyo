@@ -21,6 +21,19 @@ function viewtopic_controller(){
     if(isset($_GET['topicid'])){
         if($topic = getTopic($_GET['topicid'])){
             $messages = getAllMessages($_GET['topicid']);
+
+
+            if(isset($messages)){
+                if(isset($_GET["page"]) && is_numeric($_GET["page"])){
+                    $page = $_GET["page"];
+                }else{
+                    $page = 1;
+                }
+                $maxpage = 15;
+                $messagescount = count($messages);
+                $messages = array_slice($messages, $maxpage*($page-1), $maxpage);
+            }
+
             require_once "views/topic.view.php";
         }else{
             echo "404";

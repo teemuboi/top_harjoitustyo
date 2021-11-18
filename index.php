@@ -2,9 +2,9 @@
 date_default_timezone_set("Europe/Helsinki");
 session_start();
 
+require_once "database/connection.php";
 require_once "library/cleaner.php";
 require_once "library/swearfilter.php";
-require_once "database/connection.php";
 require_once "controllers/frontpagecontroller.php";
 require_once "controllers/usercontroller.php";
 require_once "controllers/topiccontroller.php";

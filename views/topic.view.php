@@ -35,3 +35,27 @@
     </tr>
 <?php }?>
 </table>
+
+<?php if(isset($page)){
+if($page-1 != 0){
+    if($page-1 != 1){?>
+        <a href='/topic?topicid=<?=$_GET["topicid"]?>&page=1'>
+            1
+        </a>
+    <?php }?>
+
+    <a href='/topic?topicid=<?=$_GET["topicid"]?>&page=<?=$page-1?>'>
+        <
+    </a>
+<?php }?>
+<?=$page?>
+<?php if($page*$maxpage < $messagescount){?>
+    <a href='/topic?topicid=<?=$_GET["topicid"]?>&page=<?=$page+1?>'>
+        >
+    </a>
+
+    <?php if($page+1 != ceil($messagescount/$maxpage)){?>
+    <a href='/topic?topicid=<?=$_GET["topicid"]?>&page=<?=ceil($messagescount/$maxpage)?>'>
+        <?=ceil($messagescount/$maxpage)?>
+    </a>
+<?php }}}?>
