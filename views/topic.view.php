@@ -12,30 +12,6 @@
 </form>
 <?php }?>
 
-<table class="viewtopic">
-<?php foreach ($messages as $message) {?>
-    <tr>
-        <td class="text"><i class="username"><?=getUser($message["userid"])["username"]?></i><div class="content"><?=censor_input(htmlentities($message["text"]))?></div></td>
-        <td class="info">
-            <?=dateConvert($message["date"])?><br>
-            <?php if(isLoggedIn() && $_SESSION['userid'] == $message["userid"] || isAdmin()){?>
-                <?php if($_SESSION['userid'] == $message["userid"] || !isAdmin()){?>
-                    <a href='/editmessage?messageid=<?= $message["messageid"]?>'>edit</a>
-                <?php }?>
-                <a href='/deletemessage?messageid=<?= $message["messageid"]?>'>delete</a>
-            <?php }else{?>
-                <br>
-            <?php }?>
-        </td>
-        <td class="vote">
-            ▲<br>
-            0<br>
-            ▼
-        </td>
-    </tr>
-<?php }?>
-</table>
-
 <?php if(isset($page)){
 if($page-1 != 0){
     if($page-1 != 1){?>
@@ -59,3 +35,27 @@ if($page-1 != 0){
         <?=ceil($messagescount/$maxpage)?>
     </a>
 <?php }}}?>
+
+<table class="viewtopic">
+<?php foreach ($messages as $message) {?>
+    <tr>
+        <td class="text"><i class="username"><?=getUser($message["userid"])["username"]?></i><div class="content"><?=censor_input(htmlentities($message["text"]))?></div></td>
+        <td class="info">
+            <?=dateConvert($message["date"])?><br>
+            <?php if(isLoggedIn() && $_SESSION['userid'] == $message["userid"] || isAdmin()){?>
+                <?php if($_SESSION['userid'] == $message["userid"] || !isAdmin()){?>
+                    <a href='/editmessage?messageid=<?=$message["messageid"]?>'>edit</a>
+                <?php }?>
+                <a href='/deletemessage?messageid=<?=$message["messageid"]?>'>delete</a>
+            <?php }else{?>
+                <br>
+            <?php }?>
+        </td>
+        <td class="vote">
+            <a <?=votedStyle($message["messageid"], 1)?> href='/vote?messageid=<?=$message["messageid"]?>&vote=upvote'>▲</a><br>
+            <?=countMessageVotes($message["messageid"])?><br>
+            <a <?=votedStyle($message["messageid"], -1)?> href='/vote?messageid=<?=$message["messageid"]?>&vote=downvote'>▼</a>
+        </td>
+    </tr>
+<?php }?>
+</table>

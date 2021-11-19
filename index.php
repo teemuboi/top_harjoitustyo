@@ -57,6 +57,10 @@ switch(explode("?", $_SERVER["REQUEST_URI"])[0]){
         deletemessage_controller();
     break;
 
+    case "/vote":
+        votemessage_controller();
+    break;
+
     default:
       echo "404";
 }

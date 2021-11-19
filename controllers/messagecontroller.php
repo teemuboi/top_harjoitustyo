@@ -57,3 +57,36 @@ function deletemessage_controller(){
         header("Location: /topic?topicid=".$message["topicid"]);
     }
 }
+
+function votemessage_controller(){
+    $messageid = $_GET['messageid'];
+    $message = getMessage($messageid);
+    $vote = $_GET['vote'];
+    if($vote == "upvote"){
+        $vote = 1;
+    }else if($vote == "downvote"){
+        $vote = -1;
+    }else{
+        header("Location: /topic?topicid=".$message["topicid"]);
+    }
+    if(isset($messageid) && isset($vote)){
+        if(hasVoted($messageid)){
+            $uservote = getUserVote($messageid)[0];
+            if($uservote["vote"] == $vote){
+                editUserVote($messageid, "0");
+            }else if($uservote["vote"] >= $vote){
+                editUserVote($messageid, "-1");
+            }else if($uservote["vote"] <= $vote){
+                editUserVote($messageid, "1");
+            }
+            header("Location: /topic?topicid=".$message["topicid"]);
+        }else{
+            try {
+                voteMessage($messageid, $vote);
+                header("Location: /topic?topicid=".$message["topicid"]);
+            } catch (PDOException $e){
+                echo "Error saving to database: " . $e->getMessage();
+            }
+        }
+    }
+}

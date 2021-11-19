@@ -164,6 +164,20 @@ table {
     user-select: none;
 }
 
+.viewtopic .vote a{
+    text-decoration: none;
+    color: blue;
+}
+
+.viewtopic .vote a:hover{
+    text-decoration: underline;
+}
+
+.viewtopic .vote .voted{
+    color: white;
+    text-shadow: 0px 0px 2px black;
+}
+
 textarea {
     resize: none;
     width: 100%;

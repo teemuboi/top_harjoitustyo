@@ -1,4 +1,3 @@
-<!-- <h1>Etusivu</h1> -->
 <?php if(isLoggedIn()){?>
 <form method="post">
     Create a topic<br>

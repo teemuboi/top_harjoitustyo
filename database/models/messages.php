@@ -93,3 +93,93 @@ function deleteMessages($topicid){
 
     return $messages;
 }
+
+function voteMessage($messageid, $vote){
+    $pdo = connectDB();
+    $userid = $_SESSION['userid'];
+    $date = date('Y-m-d H:i:s');
+
+    $data = [$messageid, $userid, $vote, $date];
+    $sql = "INSERT INTO votes (messageid, userid, vote, date) VALUES (?, ?, ?, ?)";
+    $stm = $pdo->prepare($sql);
+
+    return $stm->execute($data);
+}
+
+function getVotes($messageid){
+    $pdo = connectDB();
+
+    $sql = "SELECT * FROM votes WHERE messageid = $messageid";
+    $stm = $pdo->query($sql);
+    $votes = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+    return $votes;
+}
+
+function editUserVote($messageid, $newvote){
+    $userid = $_SESSION['userid'];
+
+    $pdo = connectDB();
+
+    $sql = "UPDATE votes SET vote = '$newvote' WHERE messageid = $messageid AND userid = $userid";
+    $stm = $pdo->query($sql);
+    $vote = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+    return $vote;
+}
+
+function getUserVote($messageid){
+    $userid = $_SESSION['userid'];
+
+    $pdo = connectDB();
+
+    $sql = "SELECT * FROM votes WHERE messageid = $messageid AND userid = $userid";
+    $stm = $pdo->query($sql);
+    $vote = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+    return $vote;
+}
+
+function hasVoted($messageid){
+    $pdo = connectDB();
+
+    $sql = "SELECT * FROM votes WHERE messageid = $messageid";
+    $stm = $pdo->query($sql);
+    $votes = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+    if($votes){
+        foreach ($votes as $vote){
+            if($_SESSION["userid"] == $vote["userid"]){
+                return true;
+            }
+        }
+    }else{
+        return false;
+    }
+}
+
+function votedStyle($messageid, $vote){
+    $userid = $_SESSION['userid'];
+    if(getUserVote($messageid)){
+        $votes = getUserVote($messageid)[0];
+    }else{
+        return;
+    }
+    
+    if($votes["vote"] >= 1 && $vote == 1){
+        return "class='voted'";
+    }else if($votes["vote"] <= -1 && $vote == -1){
+        return "class='voted'";
+    }
+}
+
+function countMessageVotes($messageid){
+    $votes = getVotes($messageid);
+    $count = 0;
+    if($votes){
+        foreach ($votes as $vote){
+            $count += $vote["vote"];
+        }
+    }
+    return $count;
+}
