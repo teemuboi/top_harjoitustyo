@@ -1,7 +1,7 @@
 <h1>Login</h1>
 <?php
 if(isset($result) && $result == false){
-    echo "Väärä käyttäjänimi tai salasana";
+    echo "Wrong username or password";
 }
 ?>
 <form method="post">

@@ -1,5 +1,5 @@
 <?php
-require_once "database/connection.php";
+// require_once "database/connection.php";
 
 function addMessage($text, $topicid){
     $pdo = connectDB();
@@ -118,10 +118,11 @@ function getVotes($messageid){
 
 function editUserVote($messageid, $newvote){
     $userid = $_SESSION['userid'];
+    $date = date('Y-m-d H:i:s');
 
     $pdo = connectDB();
 
-    $sql = "UPDATE votes SET vote = '$newvote' WHERE messageid = $messageid AND userid = $userid";
+    $sql = "UPDATE votes SET vote = '$newvote', date = '$date' WHERE messageid = $messageid AND userid = $userid";
     $stm = $pdo->query($sql);
     $vote = $stm->fetchAll(PDO::FETCH_ASSOC);
 

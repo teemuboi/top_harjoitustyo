@@ -39,9 +39,8 @@ if($page-1 != 0){
 <table class="viewtopic">
 <?php foreach ($messages as $message) {?>
     <tr>
-        <td class="text"><i class="username"><?=getUser($message["userid"])["username"]?></i><div class="content"><?=censor_input(htmlentities($message["text"]))?></div></td>
+        <td class="text"><i class="username"><?=getUser($message["userid"])["username"]?> <?=dateConvert($message["date"])?></i><div class="content"><?=censor_input(htmlentities($message["text"]))?></div></td>
         <td class="info">
-            <?=dateConvert($message["date"])?><br>
             <?php if(isLoggedIn() && $_SESSION['userid'] == $message["userid"] || isAdmin()){?>
                 <?php if($_SESSION['userid'] == $message["userid"] || !isAdmin()){?>
                     <a href='/editmessage?messageid=<?=$message["messageid"]?>'>edit</a>
