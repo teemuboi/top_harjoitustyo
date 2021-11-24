@@ -141,17 +141,18 @@ table {
     font-size: 14px;
 }
 
-.viewtopic .info{
-    width: 84px;
-    vertical-align: text-top;
+.viewtopic .operations{
+    font-size: 14px;
+    position: absolute;
+    right: 0;
 }
 
-.viewtopic .info a{
+.viewtopic .operations a{
     text-decoration: none;
     color: red;
 }
 
-.viewtopic .info a:hover{
+.viewtopic .operations a:hover{
     text-decoration: underline;
 }
 
