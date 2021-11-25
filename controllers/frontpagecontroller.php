@@ -43,7 +43,7 @@ function frontpage_controller(){
         }else{
             $page = 1;
         }
-        $maxpage = 12; //how many topics per page
+        $maxpage = 14; //how many topics per page
         $topiccount = count($topics); //total amount of topics
         $topics = array_slice($topics, $maxpage*($page-1), $maxpage); //breaks the topic array to pages
     }

@@ -105,7 +105,7 @@ table {
 }
 
 .maintopics .info a{
-    color: rgb(197, 0, 0);
+    color: rgb(133, 133, 133);
 }
 
 .maintopics .date{
@@ -115,7 +115,7 @@ table {
 }
 
 .maintopics .topics, .viewtopic .text{
-    padding-right: 20px;
+    /* padding-right: 5px; */
     word-break: break-all;
 }
 
@@ -149,7 +149,7 @@ table {
 
 .viewtopic .operations a{
     text-decoration: none;
-    color: red;
+    color: rgb(133, 133, 133);
 }
 
 .viewtopic .operations a:hover{
