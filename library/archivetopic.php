@@ -12,7 +12,7 @@ function dateDifference($date){
 function archiveTopic($topicid){
     $pdo = connectDB();
 
-    $sql = "UPDATE topics SET archived = 'true' WHERE topicid = $topicid";
+    $sql = "UPDATE topics SET archived = '1' WHERE topicid = $topicid";
     $stm = $pdo->query($sql);
     $topic = $stm->fetchAll(PDO::FETCH_ASSOC);
 
@@ -23,11 +23,8 @@ foreach($topics as $topic){
     if(getMessageDate($topic["topicid"])){
         $topic["date"] = getMessageDate($topic["topicid"]);
     }
-    if(dateDifference($topic["date"]) > 10){
-        // archiveTopic($topic["topicid"]);
+    if(dateDifference($topic["date"]) > 20 && $topic["archived"] != 1){
+        archiveTopic($topic["topicid"]);
+        echo $topic["topicid"]." ".$topic["title"]." archived".PHP_EOL;
     }
-    echo 
-    // $topic["date"]." ".
-    dateDifference($topic["date"])." ".
-    $topic["title"]."<br>";
 }

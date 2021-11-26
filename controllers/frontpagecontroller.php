@@ -5,36 +5,37 @@ function frontpage_controller(){
     topic_controller();
     $topics = getAllTopics();
 
-    //hopefully fixed, but look for more bugs
+    foreach($topics as $key => $topic){
+        if(getMessageDate($topic["topicid"])){
+            $topics[$key]["date"] = getMessageDate($topic["topicid"]);
+        }
+
+        if($topic["archived"] == 1
+        //  && !isAdmin()
+        ){
+            unset($topics[$key]);
+        }
+    }
+
     function date_sort($a, $b){
-        // if(getMessageDate($b["topicid"])){ //some topics dont always sort right.
-        //     if(getMessageDate($a["topicid"])){
+        // if(getMessageDate($b["topicid"]) || getMessageDate($a["topicid"])){
+        //     if(getMessageDate($b["topicid"]) && getMessageDate($a["topicid"])){
         //         return strtotime(getMessageDate($b["topicid"])) - 
         //         strtotime(getMessageDate($a["topicid"]));
         //     }
-        //     return strtotime(getMessageDate($b["topicid"])) - strtotime($a["date"]);
+        //     if(getMessageDate($a["topicid"])){
+        //         return strtotime($b["date"]) - 
+        //         strtotime(getMessageDate($a["topicid"]));
+        //     }
+        //     if(getMessageDate($b["topicid"])){
+        //         return strtotime(getMessageDate($b["topicid"])) - 
+        //         strtotime($a["date"]);
+        //     }
         // }
-        // return strtotime($b["date"]) - strtotime($a["date"]);
-
-        if(getMessageDate($b["topicid"]) || getMessageDate($a["topicid"])){
-            if(getMessageDate($b["topicid"]) && getMessageDate($a["topicid"])){
-                return strtotime(getMessageDate($b["topicid"])) - 
-                strtotime(getMessageDate($a["topicid"]));
-            }
-            if(getMessageDate($a["topicid"])){
-                return strtotime($b["date"]) - 
-                strtotime(getMessageDate($a["topicid"]));
-            }
-            if(getMessageDate($b["topicid"])){
-                return strtotime(getMessageDate($b["topicid"])) - 
-                strtotime($a["date"]);
-            }
-        }
 
         return strtotime($b["date"]) - strtotime($a["date"]);
     }
     if(isset($topics) && is_array($topics)){
-        //sorts topics
         usort($topics, "date_sort");
 
         //checks if page number is a number or exists

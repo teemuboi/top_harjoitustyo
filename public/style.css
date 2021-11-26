@@ -159,7 +159,7 @@ table {
 .viewtopic .vote{
     /* width: max-content; */
     width: 30px;
-    vertical-align: text-top;
+    /* vertical-align: text-top; */
     text-align: center;
     /* word-break: normal; */
     user-select: none;

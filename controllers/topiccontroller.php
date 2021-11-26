@@ -47,10 +47,13 @@ function edittopic_controller(){
     if(isset($_POST['title'])){
         //sterilize input
         $title = $_POST['title'];
+        // if(isAdmin() && isset($_POST['archived'])){
+        //     $archived = $_POST['archived'];
+        // }
 
         try {
             editTopic($title, $_GET['topicid']);
-            header("Location: /");
+            // header("Location: /");
         } catch (PDOException $e){
             echo "Error editing table: " . $e->getMessage();
         }

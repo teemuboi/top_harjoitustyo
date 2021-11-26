@@ -1,8 +1,7 @@
 <?php if(isLoggedIn()){?>
 <form method="post">
-    Create a topic<br>
-    <input type="text" name="title" placeholder="title" maxlength=100 required>
-    <input type="submit" value="Post">
+    <input type="text" name="title" placeholder="Create a topic" maxlength=100 required>
+    <input type="submit" value="create">
 </form>
 <?php }?>
 
@@ -18,9 +17,11 @@ if($page-1 != 0){
         <
     </a>
 <?php }?>
-
-<?=$page?>
-
+<?php
+if($topiccount > $maxpage){
+    echo $page;
+}
+?>
 <?php if($page*$maxpage < $topiccount){?>
     <a href='/?page=<?=$page+1?>'>
         >
@@ -39,7 +40,9 @@ if($page-1 != 0){
         <td class="topics">
             <a href='/topic?topicid=<?=$topic["topicid"]?>'>
                 <b><?=htmlentities($topic["title"])?></b>
-            </a><br>
+            </a>
+            <?=$topic["archived"] == 1?"🔒":""?>
+            <br>
             <i>creator: <?=getUser($topic["userid"])["username"]?></i>
         </td>
         <td class="posts">
@@ -47,16 +50,13 @@ if($page-1 != 0){
         </td>
         <td class="info">
             <div class="date">
-                <?php if(getAllMessages($topic["topicid"])){?>
-                    latest: <?=getAllMessages($topic["topicid"])["0"]["date"]?>
-                <?php }else{?>
-                    created: <?=$topic["date"]?>
-                <?php }?><br>
+                <?=getAllMessages($topic["topicid"]) ? "latest:" : "created:"?>
+                <?=$topic["date"]?><br>
 
                 last modified: <?=$topic["lastmodified"]?><br>
             </div>
 
-            <?php if(isLoggedIn() && $_SESSION['userid'] == $topic["userid"] || isAdmin()){
+            <?php if(isLoggedIn() && $_SESSION['userid'] == $topic["userid"] && $topic["archived"] != 1 || isAdmin()){
             if(!getAllMessages($topic["topicid"]) || isAdmin()){?>
                 <a href='/edittopic?topicid=<?= $topic["topicid"]?>'>edit</a> 
             <?php }?>
