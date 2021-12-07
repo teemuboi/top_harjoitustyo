@@ -54,7 +54,7 @@ if($messagescount > $maxpage){
         <div class="content"><?=censor_input(htmlentities($message["text"]))?></div></td>
         <td class="vote">
             <?php
-            if(getTopic($_GET["topicid"])["archived"] == 1){
+            if(!isLoggedIn() || getTopic($_GET["topicid"])["archived"] == 1){
                 echo countMessageVotes($message["messageid"]);
             }else{
             ?>
