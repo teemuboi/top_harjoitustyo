@@ -1,0 +1,10 @@
+{
+    "require": {
+        "composer/composer": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "\\": "database/models"
+        }
+    }
+}

@@ -24,6 +24,9 @@ function getAllTopics(){
     return $topics;
 }
 
+/**
+ * @testFunction testGetTopic
+ */
 function getTopic($topicid){
     $pdo = connectDB();
 
