@@ -1,28 +1,41 @@
 <?php declare(strict_types=1);
-// use PHPUnit\Framework\TestCase;
+require_once "database/connection.php";
+require_once "database/models/messages.php";
+use PHPUnit\Framework\TestCase;
 
-// final class EmailTest extends TestCase
-// {
-//     public function testCanBeCreatedFromValidEmailAddress(): void
-//     {
-//         $this->assertInstanceOf(
-//             Email::class,
-//             Email::fromString('user@example.com')
-//         );
-//     }
+final class EmailTest extends TestCase
+{
+    private $conn = null;
+ 
+    final public function getConnection() {
+        if ($this->conn === null) {
+            $conn = connectDB();
+        }
+ 
+        return $this->conn;
+    }
 
-//     public function testCannotBeCreatedFromInvalidEmailAddress(): void
-//     {
-//         $this->expectException(InvalidArgumentException::class);
+    public function testCanBeCreatedFromValidEmailAddress(): void
+    {
+        $result = addMessage("a", 1);
+        $this->assertEquals(
+            1,
+            $result
+        );
+    }
 
-//         Email::fromString('invalid');
-//     }
+    // public function testCannotBeCreatedFromInvalidEmailAddress(): void
+    // {
+    //     $this->expectException(InvalidArgumentException::class);
 
-//     public function testCanBeUsedAsString(): void
-//     {
-//         $this->assertEquals(
-//             'user@example.com',
-//             Email::fromString('user@example.com')
-//         );
-//     }
-// }
+    //     Email::fromString('invalid');
+    // }
+
+    // public function testCanBeUsedAsString(): void
+    // {
+    //     $this->assertEquals(
+    //         'user@example.com',
+    //         Email::fromString('user@example.com')
+    //     );
+    // }
+}
