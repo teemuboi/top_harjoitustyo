@@ -10,7 +10,8 @@ function addMessage($text, $topicid){
     $sql = "INSERT INTO messages (topicid, userid, text, date) VALUES (?, ?, ?, ?)";
     $stm = $pdo->prepare($sql);
 
-    return $stm->execute($data);
+    $stm->execute($data);
+    return $pdo->lastInsertId();
 }
 
 function getAllMessages($topicid){
@@ -77,11 +78,11 @@ function editMessage($text, $messageid){
 function deleteMessage($messageid){
     $pdo = connectDB();
 
-    $sql = "DELETE FROM messages WHERE messageid = $messageid";
-    $stm = $pdo->query($sql);
-    $message = $stm->fetchAll(PDO::FETCH_ASSOC);
+    $sql = "DELETE FROM messages WHERE messageid = :messageid";
+    $stm = $pdo->prepare($sql);
+    $stm->bindParam(':messageid', $messageid, PDO::PARAM_INT);
 
-    return $message;
+    return $stm->execute();
 }
 
 function deleteMessages($topicid){
